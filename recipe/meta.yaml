@@ -20,12 +20,13 @@ requirements:
 
 test:
   commands:
-    - test -f ${PREFIX}/lib/libcares_static.a
-    - test -f ${PREFIX}/include/ares.h
+    - test -f ${PREFIX}/lib/libcares_static.a     # [not win]
+    - test -f ${PREFIX}/include/ares.h            # [not win]
     - test -f ${PREFIX}/lib/libcares${SHLIB_EXT}  # [not win]
-    - if not exist %PREFIX%\\Library\\bin\\cares.dll exit 1          # [win]
-    - if not exist %PREFIX%\\Library\\lib\\cares.lib exit 1          # [win]
-    - if not exist %PREFIX%\\Library\\lib\\cares_static.lib exit 1   # [win]
+    - if not exist %PREFIX%\\Library\\include\\ares.h exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\bin\\cares.dll exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\cares.lib exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\cares_static.lib exit 1  # [win]
 
 about:
   home: https://c-ares.haxx.se/
