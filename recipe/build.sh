@@ -6,6 +6,7 @@ cmake -G "$CMAKE_GENERATOR" \
       -D CMAKE_BUILD_TYPE=Release \
       -D CMAKE_INSTALL_PREFIX="$PREFIX" \
       -D CARES_STATIC=ON \
+      -D CARES_STATIC_PIC=ON \
       -D CARES_INSTALL=ON \
       ${SRC_DIR}
 
