@@ -14,9 +14,9 @@ Summary: This is c-ares, an asynchronous resolver library
 Current build status
 ====================
 
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/c-ares-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/c-ares-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/c-ares-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/c-ares-feedstock)
 [![Windows](https://img.shields.io/appveyor/ci/conda-forge/c-ares-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/c-ares-feedstock/branch/master)
-![Linux disabled](https://img.shields.io/badge/linux-disabled-lightgrey.svg)
-![OSX disabled](https://img.shields.io/badge/OSX-disabled-lightgrey.svg)
 
 Current release info
 ====================
