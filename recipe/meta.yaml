@@ -9,19 +9,25 @@ source:
   sha256: 6cdb97871f2930530c97deb7cf5c8fa4be5a0b02c7cea6e7c7667672a39d6852
 
 build:
-  number: 1000
-  skip: True  # [win]
+  number: 1001
+  skip: True  # [win and vc<14]
 
 requirements:
   build:
     - {{ compiler("c") }}
     - cmake
+  host:
+    - msinttypes  # [win and vc<14]
 
 test:
   commands:
-    - test -f ${PREFIX}/lib/libcares_static.a
-    - test -f ${PREFIX}/include/ares.h
+    - test -f ${PREFIX}/lib/libcares_static.a     # [not win]
+    - test -f ${PREFIX}/include/ares.h            # [not win]
     - test -f ${PREFIX}/lib/libcares${SHLIB_EXT}  # [not win]
+    - if not exist %PREFIX%\\Library\\include\\ares.h exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\bin\\cares.dll exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\cares.lib exit 1  # [win]
+    - if not exist %PREFIX%\\Library\\lib\\cares_static.lib exit 1  # [win]
 
 about:
   home: https://c-ares.haxx.se/
@@ -33,3 +39,4 @@ about:
 extra:
   recipe-maintainers:
     - ocefpaf
+    - wesm
