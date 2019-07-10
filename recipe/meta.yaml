@@ -16,6 +16,7 @@ requirements:
   build:
     - {{ compiler("c") }}
     - cmake
+    - make  # [unix]
   host:
     - msinttypes  # [win and vc<14]
 
