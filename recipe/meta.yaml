@@ -1,4 +1,4 @@
-{% set version = "1.15.0" %}
+{% set version = "1.16.1" %}
 
 package:
   name: c-ares
@@ -6,11 +6,11 @@ package:
 
 source:
   url: https://c-ares.haxx.se/download/c-ares-{{ version }}.tar.gz
-  sha256: 6cdb97871f2930530c97deb7cf5c8fa4be5a0b02c7cea6e7c7667672a39d6852
+  sha256: d08312d0ecc3bd48eee0a4cc0d2137c9f194e0a28de2028928c0f6cae85f86ce
 
 build:
-  number: 1001
-  skip: True  # [win and vc<14]
+  number: 0
+  skip: true  # [win and vc<14]
 
 requirements:
   build:
@@ -35,7 +35,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE.md
-  summary: 'This is c-ares, an asynchronous resolver library'
+  summary: This is c-ares, an asynchronous resolver library
 
 extra:
   recipe-maintainers:
