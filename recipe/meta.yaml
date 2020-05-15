@@ -22,7 +22,6 @@ requirements:
 
 test:
   commands:
-    - test -f ${PREFIX}/lib/libcares_static.a     # [not win]
     - test -f ${PREFIX}/include/ares.h            # [not win]
     - test -f ${PREFIX}/lib/libcares${SHLIB_EXT}  # [not win]
     - if not exist %PREFIX%\\Library\\include\\ares.h exit 1  # [win]
