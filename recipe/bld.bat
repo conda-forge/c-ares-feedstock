@@ -4,7 +4,7 @@ mkdir build_%CMAKE_CONFIG%
 pushd build_%CMAKE_CONFIG%
 
 cmake -G "NMake Makefiles" ^
-      -DCARES_STATIC:BOOL=ON ^
+      -DCARES_STATIC:BOOL=OFF ^
       -DCARES_SHARED:BOOL=ON ^
       -DCMAKE_BUILD_TYPE:STRING=%CMAKE_CONFIG% ^
       -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
