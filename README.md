@@ -5,7 +5,7 @@ Home: https://c-ares.haxx.se/
 
 Package license: MIT
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: This is c-ares, an asynchronous resolver library
 
