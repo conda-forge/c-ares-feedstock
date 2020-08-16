@@ -2,7 +2,7 @@
 
 mkdir build && cd build
 
-cmake -G"$CMAKE_GENERATOR" \
+cmake ${CMAKE_ARGS} -G"$CMAKE_GENERATOR" \
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX="$PREFIX" \
       -DCARES_STATIC=OFF \
