@@ -18,7 +18,7 @@ requirements:
     - {{ compiler("c") }}
     - cmake  # [win]
     # cmake on unix depends on c-ares. This breaks the cycle.
-    - cmake-no-system  # [linux]
+    - cmake-no-system  # [unix]
     - make  # [unix]
   host:
     - msinttypes  # [win and vc<14]
