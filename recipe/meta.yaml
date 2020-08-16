@@ -15,9 +15,10 @@ build:
 
 requirements:
   build:
-    - libtool  # [unix]
     - {{ compiler("c") }}
-    - cmake
+    - cmake  # [win]
+    # cmake on unix depends on c-ares. This breaks the cycle.
+    - cmake-no-system  # [linux]
     - make  # [unix]
   host:
     - msinttypes  # [win and vc<14]
