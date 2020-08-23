@@ -9,29 +9,55 @@ source:
   sha256: d08312d0ecc3bd48eee0a4cc0d2137c9f194e0a28de2028928c0f6cae85f86ce
 
 build:
-  number: 2
-  run_exports:
-    - {{ pin_subpackage("c-ares", max_pin="x") }}
+  number: 3
 
-requirements:
-  build:
-    - {{ compiler("c") }}
-    - cmake  # [win]
-    # cmake on unix depends on c-ares. This breaks the cycle.
-    - cmake-no-system  # [unix]
-    - make  # [unix]
-  host:
-    - msinttypes  # [win and vc<14]
-
-test:
-  commands:
-    - test -f ${PREFIX}/include/ares.h            # [not win]
-    - test -f ${PREFIX}/lib/libcares${SHLIB_EXT}  # [not win]
-    - test ! -f ${PREFIX}/lib/libcares.a          # [not win]
-    - if not exist %PREFIX%\\Library\\include\\ares.h exit 1  # [win]
-    - if not exist %PREFIX%\\Library\\bin\\cares.dll exit 1  # [win]
-    - if not exist %PREFIX%\\Library\\lib\\cares.lib exit 1  # [win]
-    - if exist %PREFIX%\\Library\\lib\\cares_static.lib exit 1  # [win]
+outputs:
+  - name: c-ares
+    script: build_output.sh  # [unix]
+    script: bld_output.bat  # [win]
+    build:
+      run_exports:
+      - {{ pin_subpackage("c-ares", max_pin="x") }}
+    requirements:
+      build:
+        - {{ compiler("c") }}
+        - cmake  # [win]
+        # cmake on unix depends on c-ares. This breaks the cycle.
+        - cmake-no-system  # [unix]
+        - ninja
+      run_constraint:
+        - c-ares-static <0a0
+    test:
+      commands:
+        - test -f ${PREFIX}/include/ares.h            # [not win]
+        - test -f ${PREFIX}/lib/libcares${SHLIB_EXT}  # [not win]
+        - test ! -f ${PREFIX}/lib/libcares.a          # [not win]
+        - test ! -f ${PREFIX}/lib/libcares_static.a   # [not win]
+        - if not exist %PREFIX%\\Library\\include\\ares.h exit 1  # [win]
+        - if not exist %PREFIX%\\Library\\bin\\cares.dll exit 1  # [win]
+        - if not exist %PREFIX%\\Library\\lib\\cares.lib exit 1  # [win]
+        - if exist %PREFIX%\\Library\\lib\\cares_static.lib exit 1  # [win]
+  - name: c-ares-static
+    script: build_output.sh  # [unix]
+    script: bld_output.bat  # [win]
+    requirements:
+      build:
+        - {{ compiler("c") }}
+        - cmake  # [win]
+        # cmake on unix depends on c-ares. This breaks the cycle.
+        - cmake-no-system  # [unix]
+        - ninja
+      run_constraint:
+        - c-ares <0a0
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/libcares.a  # [not win]
+        - test ! -f ${PREFIX}/lib/libcares${SHLIB_EXT}  # [not win]
+        - test -f ${PREFIX}/include/ares.h            # [not win]
+        - if not exist %PREFIX%\\Library\\include\\ares.h exit 1  # [win]
+        - if exist %PREFIX%\\Library\\bin\\cares.dll exit 1  # [win]
+        - if not exist %PREFIX%\\Library\\lib\\cares.lib exit 1  # [win]
+        - if not exist %PREFIX%\\Library\\lib\\cares_static.lib exit 1  # [win]
 
 about:
   home: https://c-ares.haxx.se/
