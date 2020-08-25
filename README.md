@@ -98,6 +98,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-c--ares-green.svg)](https://anaconda.org/conda-forge/c-ares) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/c-ares.svg)](https://anaconda.org/conda-forge/c-ares) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/c-ares.svg)](https://anaconda.org/conda-forge/c-ares) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/c-ares.svg)](https://anaconda.org/conda-forge/c-ares) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-c--ares--static-green.svg)](https://anaconda.org/conda-forge/c-ares-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/c-ares-static.svg)](https://anaconda.org/conda-forge/c-ares-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/c-ares-static.svg)](https://anaconda.org/conda-forge/c-ares-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/c-ares-static.svg)](https://anaconda.org/conda-forge/c-ares-static) |
 
 Installing c-ares
 =================
@@ -108,10 +109,10 @@ Installing `c-ares` from the `conda-forge` channel can be achieved by adding `co
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `c-ares` can be installed with:
+Once the `conda-forge` channel has been enabled, `c-ares, c-ares-static` can be installed with:
 
 ```
-conda install c-ares
+conda install c-ares c-ares-static
 ```
 
 It is possible to list all of the versions of `c-ares` available on your platform with:
