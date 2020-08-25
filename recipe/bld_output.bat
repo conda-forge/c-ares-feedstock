@@ -4,7 +4,7 @@ set CMAKE_CONFIG=Release
 mkdir build_%CMAKE_CONFIG%
 pushd build_%CMAKE_CONFIG%
 
-if "%PKG_NAME:~-6%" eq "static" (
+if "%PKG_NAME:~-6%" == "static" (
   set CARES_STATIC=ON
   set CARES_SHARED=OFF
 ) else (
