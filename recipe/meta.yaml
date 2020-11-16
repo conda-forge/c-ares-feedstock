@@ -1,4 +1,4 @@
-{% set version = "1.16.1" %}
+{% set version = "1.17.0" %}
 
 package:
   name: c-ares
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://c-ares.haxx.se/download/c-ares-{{ version }}.tar.gz
-  sha256: d08312d0ecc3bd48eee0a4cc0d2137c9f194e0a28de2028928c0f6cae85f86ce
+  sha256: 1cecd5dbe21306c7263f8649aa6e9a37aecb985995a3489f487d98df2b40757d
 
 build:
-  number: 3
+  number: 0
 
 outputs:
   - name: c-ares
@@ -17,7 +17,7 @@ outputs:
     script: bld_output.bat  # [win]
     build:
       run_exports:
-      - {{ pin_subpackage("c-ares", max_pin="x") }}
+        - {{ pin_subpackage("c-ares", max_pin="x") }}
     requirements:
       build:
         - {{ compiler("c") }}
