@@ -5,11 +5,9 @@ Home: https://c-ares.haxx.se/
 
 Package license: MIT
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/c-ares-feedstock/blob/master/LICENSE.txt)
 
 Summary: This is c-ares, an asynchronous resolver library
-
-
 
 Current build status
 ====================
