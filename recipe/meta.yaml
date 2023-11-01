@@ -7,10 +7,6 @@ package:
 source:
   url: https://c-ares.haxx.se/download/c-ares-{{ version }}.tar.gz
   sha256: cd7aa3af1d3ee780d6437039a7ddb7f1ec029f9c4f7aabb0197e384eb5bc2f2d
-  patches:
-    # backport so-far unreleased commit because c-ares 1.20 broke grpc, see
-    # https://github.com/c-ares/c-ares/commit/a070d7835d667b2fae5266fe1b790677dae47d25
-    - patches/0001-Socket-callbacks-were-passed-SOCK_STREAM-instead-of-.patch
 
 build:
   number: 0
