@@ -1,4 +1,4 @@
-{% set version = "1.20.1" %}
+{% set version = "1.21.0" %}
 
 package:
   name: c-ares
@@ -6,14 +6,10 @@ package:
 
 source:
   url: https://c-ares.haxx.se/download/c-ares-{{ version }}.tar.gz
-  sha256: de24a314844cb157909730828560628704f4f896d167dd7da0fa2fb93ea18b10
-  patches:
-    # backport so-far unreleased commit because c-ares 1.20 broke grpc, see
-    # https://github.com/c-ares/c-ares/commit/a070d7835d667b2fae5266fe1b790677dae47d25
-    - patches/0001-Socket-callbacks-were-passed-SOCK_STREAM-instead-of-.patch
+  sha256: cd7aa3af1d3ee780d6437039a7ddb7f1ec029f9c4f7aabb0197e384eb5bc2f2d
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: c-ares
