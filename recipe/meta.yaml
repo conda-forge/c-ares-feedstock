@@ -1,12 +1,12 @@
-{% set version = "1.29.0" %}
+{% set version = "1.32.0" %}
 
 package:
   name: c-ares
   version: {{ version }}
 
 source:
-  url: https://c-ares.haxx.se/download/c-ares-{{ version }}.tar.gz
-  sha256: 0b89fa425b825c4c7bc708494f374ae69340e4d1fdc64523bdbb2750bfc02ea7
+  url: https://github.com/c-ares/c-ares/releases/download/v{{ version }}/c-ares-{{ version }}.tar.gz
+  sha256: 5ab3fad06edb98fe8081febe1e41a027cfa3199fc525a59c851376414fe24c5b
 
 build:
   number: 0
