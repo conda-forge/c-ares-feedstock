@@ -1,4 +1,4 @@
-{% set version = "1.32.0" %}
+{% set version = "1.32.1" %}
 
 package:
   name: c-ares
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/c-ares/c-ares/releases/download/v{{ version }}/c-ares-{{ version }}.tar.gz
-  sha256: 5ab3fad06edb98fe8081febe1e41a027cfa3199fc525a59c851376414fe24c5b
+  sha256: 63be2c4ee121faa47e9766f735b4cde750fff2c563f81c11e572d3dc6401e5e7
 
 build:
   number: 0
