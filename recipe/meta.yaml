@@ -9,7 +9,7 @@ source:
   sha256: 26e1f7771da23e42a18fdf1e58912a396629e53a2ac71b130af93bbcfb90adbe
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: c-ares
