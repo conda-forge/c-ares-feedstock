@@ -1,0 +1,96 @@
+schema_version: 1
+
+context:
+  version: "1.34.8"
+
+recipe:
+  name: c-ares
+  version: ${{ version }}
+
+source:
+  url: https://github.com/c-ares/c-ares/releases/download/v${{ version }}/c-ares-${{ version }}.tar.gz
+  sha256: c222b6d681096f9444d2c4863d2c1174019e27cacca0a4a5c114d36dd7d7bf78
+
+build:
+  number: 1
+
+outputs:
+  - package:
+      name: c-ares
+    build:
+      script: build_output
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ stdlib("c") }}
+        - if: win
+          then: cmake
+        # cmake on unix depends on c-ares. This breaks the cycle.
+        - if: unix
+          then: cmake-no-system
+        - if: unix
+          then: ninja
+      run_constraints:
+        - c-ares-static <0a0
+      run_exports:
+        - ${{ pin_subpackage("c-ares", upper_bound="x") }}
+    tests:
+      - package_contents:
+          include:
+            - ares.h
+          lib:
+            - cares
+          files:
+            not_exists:
+              - if: unix
+                then: lib/libcares.a
+              - if: unix
+                then: lib/libcares_static.a
+              - if: win
+                then: Library/lib/cares_static.lib
+  - package:
+      name: c-ares-static
+    build:
+      script: build_output
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ stdlib("c") }}
+        - if: win
+          then: cmake
+        # cmake on unix depends on c-ares. This breaks the cycle.
+        - if: unix
+          then: cmake-no-system
+        - if: unix
+          then: ninja
+      run_constraints:
+        - c-ares <0a0
+    tests:
+      - package_contents:
+          include:
+            - ares.h
+          files:
+            exists:
+              - if: unix
+                then: lib/libcares.a
+              - if: win
+                then: Library/lib/cares.lib
+            not_exists:
+              - if: linux
+                then: lib/libcares.so*
+              - if: osx
+                then: lib/libcares*.dylib
+              - if: win
+                then: Library/bin/cares.dll
+
+about:
+  license: MIT
+  license_file: LICENSE.md
+  summary: This is c-ares, an asynchronous resolver library
+  homepage: https://c-ares.haxx.se/
+
+extra:
+  recipe-maintainers:
+    - ocefpaf
+    - wesm
+    - xhochy
