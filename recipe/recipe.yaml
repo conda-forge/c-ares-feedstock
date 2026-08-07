@@ -18,8 +18,7 @@ outputs:
   - package:
       name: c-ares
     build:
-      script:
-        file: ${{ 'bld_output.bat' if win else 'build_output.sh' if unix else '' }}
+      script: build_output
     requirements:
       build:
         - ${{ compiler("c") }}
@@ -52,8 +51,7 @@ outputs:
   - package:
       name: c-ares-static
     build:
-      script:
-        file: ${{ 'bld_output.bat' if win else 'build_output.sh' if unix else '' }}
+      script: build_output
     requirements:
       build:
         - ${{ compiler("c") }}
