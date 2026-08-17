@@ -12,7 +12,7 @@ source:
   sha256: c222b6d681096f9444d2c4863d2c1174019e27cacca0a4a5c114d36dd7d7bf78
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - package:
@@ -30,8 +30,6 @@ outputs:
           then: cmake-no-system
         - if: unix
           then: ninja
-      run_constraints:
-        - c-ares-static <0a0
       run_exports:
         - ${{ pin_subpackage("c-ares", upper_bound="x") }}
     tests:
@@ -52,6 +50,11 @@ outputs:
       name: c-ares-static
     build:
       script: build_output
+      files:
+        - if: unix
+          then: lib/libcares.a
+        - if: win
+          then: Library/lib/cares_static.lib
     requirements:
       build:
         - ${{ compiler("c") }}
@@ -63,25 +66,19 @@ outputs:
           then: cmake-no-system
         - if: unix
           then: ninja
-      run_constraints:
-        - c-ares <0a0
+      host:
+        - ${{ pin_subpackage("c-ares", exact=True) }}
+      run:
+        # the headers, cmake & pkgconfig metadata live in the shared output
+        - ${{ pin_subpackage("c-ares", exact=True) }}
     tests:
       - package_contents:
-          include:
-            - ares.h
           files:
             exists:
               - if: unix
                 then: lib/libcares.a
               - if: win
-                then: Library/lib/cares.lib
-            not_exists:
-              - if: linux
-                then: lib/libcares.so*
-              - if: osx
-                then: lib/libcares*.dylib
-              - if: win
-                then: Library/bin/cares.dll
+                then: Library/lib/cares_static.lib
 
 about:
   license: MIT

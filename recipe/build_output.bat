@@ -6,7 +6,10 @@ pushd build_%CMAKE_CONFIG%
 
 if "%PKG_NAME:~-6%" == "static" (
   set CARES_STATIC=ON
-  set CARES_SHARED=OFF
+  REM upstream only defines STATIC_SUFFIX when the shared lib is built, so a
+  REM static-only build names the import lib cares.lib, clobbering the shared
+  REM output. Build both and package just cares_static.lib.
+  set CARES_SHARED=ON
 ) else (
   set CARES_STATIC=OFF
   set CARES_SHARED=ON
